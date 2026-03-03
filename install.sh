@@ -15,6 +15,7 @@ NC='\033[0m' # No Color
 # 配置路径
 CLAUDE_CONFIG_DIR="$HOME/.claude"
 SETTINGS_FILE="$CLAUDE_CONFIG_DIR/settings.json"
+CLAUDE_JSON_FILE="$CLAUDE_CONFIG_DIR/.claude.json"
 ENV_FILE="$HOME/.claude_env"
 
 # 当前脚本所在目录
@@ -148,9 +149,16 @@ EOF
         exit 1
     fi
 
+    # 复制 claude.json 模板（如果存在）
+    if [[ -f "$SCRIPT_DIR/claude.json.template" ]]; then
+        cp "$SCRIPT_DIR/claude.json.template" "$CLAUDE_JSON_FILE"
+        echo -e "${GREEN}✓ .claude.json 配置完成${NC}"
+    fi
+
     # 设置权限
     chmod 600 "$SETTINGS_FILE"
     chmod 600 "$ENV_FILE"
+    [[ -f "$CLAUDE_JSON_FILE" ]] && chmod 600 "$CLAUDE_JSON_FILE"
 
     echo -e "${GREEN}✓ Claude Code 配置完成${NC}"
 }

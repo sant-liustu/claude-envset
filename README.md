@@ -25,23 +25,35 @@ chmod +x install.sh
 ./install.sh
 ```
 
-脚本会自动检测是否需要配置 API Key，如果检测到是首次使用，会提示你编辑 `~/.claude_env` 文件。
+首次运行会提示你配置 API Key，按提示编辑 `~/.claude_env` 后重新运行即可。
 
-### 3. 配置 API Key（首次使用）
+**获取 API Key**: 访问 [阿里云百炼控制台](https://bailian.console.aliyun.com/)
 
-如果脚本提示需要配置 API Key，请编辑 `~/.claude_env` 文件：
-
-```bash
-vim ~/.claude_env  # 填入你的 ANTHROPIC_AUTH_TOKEN
-```
-
-编辑完成后重新运行 `./install.sh`。
-
-### 4. 启动 Claude Code
+### 3. 启动 Claude Code
 
 ```bash
 claude
 ```
+
+---
+
+## ⚠️ Windows 用户注意
+
+如果你是在 **Windows** 上使用 Claude Code，配置文件路径不同：
+
+| 平台 | settings.json 路径 |
+|------|-------------------|
+| Linux/macOS | `~/.claude/settings.json` |
+| Windows | `%APPDATA%\Claude\settings.json` |
+
+Windows 手动配置步骤：
+
+1. 复制 `settings.json.template` 内容
+2. 将 `${ANTHROPIC_AUTH_TOKEN}` 替换为你的真实 API Key
+3. 保存到 `%APPDATA%\Claude\settings.json`
+4. 设置环境变量：
+   - `ANTHROPIC_AUTH_TOKEN` = 你的API Key
+   - `ANTHROPIC_BASE_URL` = `https://coding.dashscope.aliyuncs.com/apps/anthropic`
 
 ## 支持的模型
 
@@ -60,21 +72,13 @@ claude
 
 ```
 .
-├── install.sh              # 一键安装脚本
+├── install.sh              # 一键安装脚本（Linux/macOS）
 ├── settings.json.template  # Claude 配置模板
+├── claude.json.template    # Claude 用户数据模板
 ├── .env.example           # 环境变量示例
 ├── .gitignore            # Git 忽略规则
 └── README.md             # 本文件
 ```
-
-## 手动配置（可选）
-
-如果不想使用安装脚本，可以手动配置：
-
-1. 安装 Node.js 20+
-2. 安装 Claude Code: `npm install -g @anthropic-ai/claude-code`
-3. 创建 `~/.claude/settings.json`，参考 `settings.json.template`
-4. 设置环境变量 `ANTHROPIC_AUTH_TOKEN`
 
 ## 常见问题
 
@@ -97,6 +101,13 @@ npm uninstall -g @anthropic-ai/claude-code
 rm -rf ~/.claude
 rm ~/.claude_env
 ```
+
+### Q: Windows 上提示无法连接到 Anthropic？
+
+A: 请确保：
+1. `settings.json` 放在正确的位置（`%APPDATA%\Claude\settings.json`）
+2. 环境变量已正确设置
+3. Claude Code 版本较新（v2.1.50+）
 
 ## License
 
