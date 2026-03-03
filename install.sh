@@ -15,7 +15,8 @@ NC='\033[0m' # No Color
 # 配置路径
 CLAUDE_CONFIG_DIR="$HOME/.claude"
 SETTINGS_FILE="$CLAUDE_CONFIG_DIR/settings.json"
-CLAUDE_JSON_FILE="$CLAUDE_CONFIG_DIR/.claude.json"
+# 注意：.claude.json 必须在用户主目录，不在 .claude/ 子目录中
+CLAUDE_JSON_FILE="$HOME/.claude.json"
 ENV_FILE="$HOME/.claude_env"
 
 # 当前脚本所在目录
@@ -220,7 +221,8 @@ show_usage() {
     echo "  claude --version    - 查看版本"
     echo ""
     echo "配置文件位置："
-    echo "  - Claude 配置: ~/.claude/settings.json"
+    echo "  - Claude API 配置: ~/.claude/settings.json"
+    echo "  - Claude 用户状态: ~/.claude.json"
     echo "  - API Key: ~/.claude_env"
     echo ""
     echo -e "${YELLOW}提示：如果这是首次安装，请运行以下命令使环境变量生效：${NC}"
