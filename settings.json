@@ -1,9 +1,0 @@
-{
-  "env": {
-    "ANTHROPIC_AUTH_TOKEN": "",
-    "ANTHROPIC_BASE_URL": "https://coding.dashscope.aliyuncs.com/apps/anthropic",
-    "ANTHROPIC_MODEL": "glm-4.7"
- },
-  "model": "glm-4.7",
-  "alwaysThinkingEnabled": false
-}
